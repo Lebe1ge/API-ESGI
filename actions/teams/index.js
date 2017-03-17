@@ -7,7 +7,8 @@ module.exports = (app) => {
     list,
     show,
     update,
-    remove
+    remove,
+    leave: require('./leave')(app)
   }
 
   function create(req, res, next){
