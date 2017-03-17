@@ -8,7 +8,8 @@ module.exports = (app) => {
     list,
     show,
     update,
-    remove
+    remove,
+      assign: require('./assign')(app)
   }
 
   function create(req, res, next){
@@ -34,7 +35,7 @@ module.exports = (app) => {
             if (!project.team) {
               return project;
             }
-
+            
             return app.utils.reject(403, 'Project.have.already.team')
           }
         }
