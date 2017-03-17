@@ -26,4 +26,5 @@ module.exports = (app) => {
   router.delete('/:id', app.actions.teams.remove)
 
   return router
-}
+
+};

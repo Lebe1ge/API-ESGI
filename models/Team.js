@@ -13,7 +13,7 @@ module.exports = (app) => {
     }],
     name : {
       type: String,
-      unique: true
+      default: 'default'
     },
     project: {
       type: app.mongoose.Schema.Types.ObjectId,
