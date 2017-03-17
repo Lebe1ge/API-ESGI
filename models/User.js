@@ -15,6 +15,12 @@ module.exports = (app) => {
       type: String,
       required: true
     },
+    projects: [
+       {
+         type: app.mongoose.Schema.Types.ObjectId,
+         ref:'Project'
+       }
+     ],
     teams: [
       {
         type: app.mongoose.Schema.Types.ObjectId,

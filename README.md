@@ -9,12 +9,12 @@ Grello a pour but de devenir une plateforme de gestion de taches réservée aux 
 
 ### 1 - Regles d'acces
 - Les services suivant seront publiques :
-     - Permettre de consulter la liste des projets
-     - Permettre de s'inscrire,
-     - Permettre de s'authentifier
+     - Permettre de consulter la liste des projets :ok_hand:
+     - Permettre de s'inscrire, :ok_hand:
+     - Permettre de s'authentifier :ok_hand:
 
 - Les services nécessitant d'être authentifié seront :
-    - Permettre de CRUD un projet.
+    - Permettre de CRUD un projet. :ok_hand:
     - Permettre de CRUD une équipe.
     - Permettre de CRUD les membres d'une équipe.
     - Permettre de CRUD une tache.
