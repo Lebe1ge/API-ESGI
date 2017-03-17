@@ -73,12 +73,11 @@ module.exports = (app) => {
   }
 
   function remove(req, res, next){
-    Project.findByIdAndRemove(req.params.id)
-      .then(app.utils.ensureOne)
-      .catch(app.utils.reject(404, 'project.not.found'))
-      .then(app.utils.empty)
-      .then(res.commit)
-      .catch(res.error)
+    Project.findByIdAndRemove(projectId)
+        .then(app.utils.ensureOne)
+        .catch(app.utils.reject(404, 'project.not.found'))
+        .then(app.utils.empty)
+        .then(res.commit)
+        .catch(res.error);
   }
-
 }
