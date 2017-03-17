@@ -1,4 +1,5 @@
 module.exports = (app) => {
+  const User = app.models.User;
   const Team = app.models.Team;
   const Project = app.models.Project;
 
@@ -19,6 +20,7 @@ module.exports = (app) => {
         .catch(app.utils.reject(403, 'Team.name.already.exists'))
         .then(ensureProjectExist)
         .then(createTeam)
+        .then(addTeamToUser)
         .then(res.commit)
         .catch(res.error)
 
@@ -26,14 +28,12 @@ module.exports = (app) => {
           return Project.findById(req.body.projectId)
                  .then(app.utils.ensureOne)
                  .then(ensureProjectEmpty)
-                 .catch(app.utils.reject(403, 'Project.not.foundenculeee'))
+                 .catch(app.utils.reject(403, 'Project.not.found'))
 
           function ensureProjectEmpty(project){
             if (!project.team) {
-              console.log("je passe laaa ");
               return project;
             }
-            console.log("je passe la ");
 
             return app.utils.reject(403, 'Project.have.already.team')
           }
@@ -45,6 +45,20 @@ module.exports = (app) => {
           team.users.push({id:req.userId, role:'Owner'})
           return team.save();
         }
+
+        function addTeamToUser(team){
+          return User.findById(req.userId)
+                     .then(app.utils.ensureOne)
+                     .then(addTeam)
+                     .catch(res.error)
+
+          function addTeam(user){
+            user.teams.push(team._id.toString())
+            return user.save();
+          }
+        }
+
+
   }
 
   function list(req, res, next) {
