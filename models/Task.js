@@ -21,7 +21,8 @@ module.exports = (app) => {
         },
         project: {
             type: Schema.Types.ObjectId,
-            ref: 'Project'
+            ref: 'Project',
+            require : true
         }
     });
 

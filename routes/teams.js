@@ -7,23 +7,23 @@ module.exports = (app) => {
     app.middlewares.ensureAuthenticated,
     app.middlewares.bodyParser.json(),
     app.middlewares.ensureFields(['name', 'projectId']),
-    app.actions.users.create
+    app.actions.teams.create
   )
 
   router.get('/',
-    app.actions.users.list
+    app.actions.teams.list
   )
 
   router.get('/:id',
-    app.actions.users.show
+    app.actions.teams.show
   )
 
   router.put('/',
     app.middlewares.bodyParser.json(),
-    app.actions.users.update
+    app.actions.teams.update
   )
 
-  router.delete('/:id', app.actions.users.remove)
+  router.delete('/:id', app.actions.teams.remove)
 
   return router
 }

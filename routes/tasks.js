@@ -6,7 +6,7 @@ module.exports = (app) => {
     router.post('/:id/tasks',
         app.middlewares.ensureAuthenticated,
         app.middlewares.bodyParser.json(),
-        app.middlewares.ensureFields('title'),
+        app.middlewares.ensureFields(['title', 'project']),
         app.actions.tasks.create
     );
 
