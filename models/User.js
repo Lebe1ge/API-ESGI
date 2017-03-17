@@ -26,7 +26,13 @@ module.exports = (app) => {
         type: app.mongoose.Schema.Types.ObjectId,
         ref:'Team'
       }
-    ]
+    ],
+      tasks: [
+          {
+              type: Schema.Types.ObjectId,
+              ref: 'Todo'
+          }
+      ]
   });
 
   UserSchema.plugin(timestamp);
