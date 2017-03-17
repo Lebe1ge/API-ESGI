@@ -39,7 +39,6 @@ module.exports = (app) => {
             .then(returnProject);
 
         function addToUser(project) {
-            console.log(user);
             user.projects.push(project._id);
             user.save()
         }
