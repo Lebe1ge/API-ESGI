@@ -7,7 +7,8 @@ module.exports = (app) => {
     list,
     show,
     update,
-    remove
+    remove,
+      assign: require('./assign')(app)
   }
 
   function create(req, res, next){
@@ -26,15 +27,12 @@ module.exports = (app) => {
           return Project.findById(req.body.projectId)
                  .then(app.utils.ensureOne)
                  .then(ensureProjectEmpty)
-                 .catch(app.utils.reject(403, 'Project.not.foundenculeee'))
+                 .catch(app.utils.reject(403, 'Project.not.found'))
 
           function ensureProjectEmpty(project){
             if (!project.team) {
-              console.log("je passe laaa ");
               return project;
             }
-            console.log("je passe la ");
-
             return app.utils.reject(403, 'Project.have.already.team')
           }
         }

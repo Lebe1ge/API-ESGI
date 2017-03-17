@@ -11,8 +11,6 @@ module.exports = (app) => {
         assign: require('./assign')(app)
     };
 
-    //TODO : modifier body.userId
-
     function create(req, res, next) {
         let user = null;
         return User.findById(req.userId)
