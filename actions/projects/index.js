@@ -9,8 +9,7 @@ module.exports = (app) => {
     list,
     show,
     update,
-    remove,
-      listTasks
+    remove
   }
 
   function create(req, res, next){
@@ -35,18 +34,21 @@ module.exports = (app) => {
         project = data;
         return new Team({project: data, users: [{id: user._id, role: 'Owner'}]})
           .save()
-          .then(addTeamToProject)
+          .then(addTeam)
 
-        function addTeamToProject(team){
+        function addTeam(team){
+          user.teams.push(team._id);
           project.team = team;
           return project;
         }
     }
 
     function persist(project) {
-        return project.save();
+        return user.save()
+          .then(()=> { return project.save()})
     }
   }
+
 
   function list(req, res, next){
     Project.find()
@@ -79,10 +81,4 @@ module.exports = (app) => {
         .then(res.commit)
         .catch(res.error);
   }
-
-    function listTasks(req, res, next){
-        Project.findById(req.params.id)
-            .then(res.commit)
-            .catch(res.error);
-    }
 }
