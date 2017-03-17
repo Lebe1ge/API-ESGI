@@ -18,12 +18,11 @@ module.exports = (app) => {
         assigned: {
             type: Schema.Types.ObjectId,
             ref: 'User'
-        }
-        /*
+        },
         project: {
             type: Schema.Types.ObjectId,
             ref: 'Project'
-        }*/
+        }
     });
 
     TaskSchema.plugin(timestamps);

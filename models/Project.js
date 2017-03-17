@@ -10,13 +10,13 @@ module.exports = (app) => {
     creator : {
       type: app.mongoose.Schema.Types.ObjectId,
       ref: 'User'
-    }
-    // tasks: [
-    //   {
-    //     type: app.mongoose.Schema.Types.ObjectId,
-    //     ref:'Task'
-    //   }
-    // ],
+    },
+    tasks: [
+       {
+         type: app.mongoose.Schema.Types.ObjectId,
+         ref:'Task'
+       }
+    ]
     // team :
     //  {
     //    type: app.mongoose.Schema.Types.ObjectId,
