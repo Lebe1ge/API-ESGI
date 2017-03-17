@@ -9,7 +9,8 @@ module.exports = (app) => {
     show,
     update,
     remove,
-      assign: require('./assign')(app)
+    leave: require('./leave')(app)
+    assign: require('./assign')(app)
   }
 
   function create(req, res, next){
