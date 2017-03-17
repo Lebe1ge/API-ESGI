@@ -30,4 +30,5 @@ module.exports = (app) => {
         app.actions.teams.assign);
 
   return router
-}
+
+};

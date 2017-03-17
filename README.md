@@ -9,7 +9,7 @@ Grello a pour but de devenir une plateforme de gestion de taches réservée aux 
 
 ### 1 - Regles d'acces
 - Les services suivant seront publiques :
-     - Permettre de consulter la liste des projets ###BOBBY
+     - Permettre de consulter la liste des projets :ok_hand:
      - Permettre de s'inscrire, :ok_hand:
      - Permettre de s'authentifier :ok_hand:
 
@@ -35,8 +35,8 @@ Grello a pour but de devenir une plateforme de gestion de taches réservée aux 
 - La suppression d'un membre de l'équipe, a l'exception du role ne peut se faire que par le créateur de l'équipe, l'administrateur, ou le membre lui-même.
 - La liste des taches d'un projet est accessible par tous les membres du projet
 - L'assignation d'une tache à un membre de l'équipe ne peut se faire que par le créateur de l'équipe, ou l'administrateur de l'équipe ###NICO
-- Un utilisateur peu quitter une équipe
-- Si un utilisateur quitte une équipe, les taches qui lui sont attribuées reviennent à l'administrateur de l'équipe, si aucun administrateur est désigné, les taches reviennent au créateur de l'équipe.
+- Un utilisateur peu quitter une équipe ###BOBBY
+- Si un utilisateur quitte une équipe, les taches qui lui sont attribuées reviennent à l'administrateur de l'équipe, si aucun administrateur est désigné, les taches reviennent au créateur de l'équipe. ###BOBBY
 - La modification d'une tache ne peut se faire que par l'utilisateur assigné sur la tache, le créateur de l'équipe ou l'administrateur.
 
 

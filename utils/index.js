@@ -7,6 +7,7 @@ module.exports = (app) => {
     };
 
     function reject(code, message) {
+      console.log(code)
         return () => {
             return Promise.reject({
                 code: code,

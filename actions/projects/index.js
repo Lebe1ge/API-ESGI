@@ -1,5 +1,6 @@
 module.exports = (app) => {
   const Project = app.models.Project;
+  const Team = app.models.Team;
   const User = app.models.User;
 
 
@@ -8,18 +9,18 @@ module.exports = (app) => {
     list,
     show,
     update,
-    remove,
-      listTasks
-  }
+    remove
+  };
 
   function create(req, res, next){
     let user = null;
+    let project = null;
 
     return User.findById(req.userId)
         .then(app.utils.ensureOne)
         .catch(app.utils.reject(403, 'invalid.user'))
         .then(createProject)
-        .then(setCreatorAndAssign)
+        .then(createTeam)
         .then(persist)
         .then(res.commit)
         .catch(res.error);
@@ -29,26 +30,25 @@ module.exports = (app) => {
         return new Project(req.body);
     }
 
-    function setCreatorAndAssign(project) {
-        project.creator = req.userId;
-        return project;
+    function createTeam(data) {
+        project = data;
+        return new Team({project: data, users: [{id: user._id, role: 'Owner'}]})
+          .save()
+          .then(addTeam)
+
+        function addTeam(team){
+          user.teams.push(team._id);
+          project.team = team;
+          return project;
+        }
     }
 
     function persist(project) {
-        return project.save()
-            .then(addToUser)
-            .then(returnProject);
-
-        function addToUser(project) {
-            user.projects.push(project._id);
-            user.save()
-        }
-
-        function returnProject() {
-            return project;
-        }
+        return user.save()
+          .then(()=> { return project.save()})
     }
   }
+
 
   function list(req, res, next){
     Project.find()
@@ -81,10 +81,4 @@ module.exports = (app) => {
         .then(res.commit)
         .catch(res.error);
   }
-
-    function listTasks(req, res, next){
-        Project.findById(req.params.id)
-            .then(res.commit)
-            .catch(res.error);
-    }
 }

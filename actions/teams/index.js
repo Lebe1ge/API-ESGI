@@ -1,4 +1,5 @@
 module.exports = (app) => {
+  const User = app.models.User;
   const Team = app.models.Team;
   const Project = app.models.Project;
 
@@ -20,6 +21,7 @@ module.exports = (app) => {
         .catch(app.utils.reject(403, 'Team.name.already.exists'))
         .then(ensureProjectExist)
         .then(createTeam)
+        .then(addTeamToUser)
         .then(res.commit)
         .catch(res.error)
 
@@ -33,6 +35,7 @@ module.exports = (app) => {
             if (!project.team) {
               return project;
             }
+            
             return app.utils.reject(403, 'Project.have.already.team')
           }
         }
@@ -43,6 +46,20 @@ module.exports = (app) => {
           team.users.push({id:req.userId, role:'Owner'})
           return team.save();
         }
+
+        function addTeamToUser(team){
+          return User.findById(req.userId)
+                     .then(app.utils.ensureOne)
+                     .then(addTeam)
+                     .catch(res.error)
+
+          function addTeam(user){
+            user.teams.push(team._id.toString())
+            return user.save();
+          }
+        }
+
+
   }
 
   function list(req, res, next) {
