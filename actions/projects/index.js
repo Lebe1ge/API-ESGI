@@ -1,5 +1,6 @@
 module.exports = (app) => {
   const Project = app.models.Project;
+  const Team = app.models.Team;
   const User = app.models.User;
 
 
@@ -13,12 +14,13 @@ module.exports = (app) => {
 
   function create(req, res, next){
     let user = null;
+    let project = null;
 
     return User.findById(req.userId)
         .then(app.utils.ensureOne)
         .catch(app.utils.reject(403, 'invalid.user'))
         .then(createProject)
-        .then(setCreatorAndAssign)
+        .then(createTeam)
         .then(persist)
         .then(res.commit)
         .catch(res.error);
@@ -28,24 +30,20 @@ module.exports = (app) => {
         return new Project(req.body);
     }
 
-    function setCreatorAndAssign(project) {
-        project.creator = req.userId;
-        return project;
+    function createTeam(data) {
+        project = data;
+        return new Team({project: data, users: [{id: user._id, role: 'Owner'}]})
+          .save()
+          .then(addTeamToProject)
+
+        function addTeamToProject(team){
+          project.team = team;
+          return project;
+        }
     }
 
     function persist(project) {
-        return project.save()
-            .then(addToUser)
-            .then(returnProject);
-
-        function addToUser(project) {
-            user.projects.push(project._id);
-            user.save()
-        }
-
-        function returnProject() {
-            return project;
-        }
+        return project.save();
     }
   }
 
