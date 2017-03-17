@@ -1,5 +1,7 @@
 module.exports = (app) => {
     const Task = app.models.Task;
+    const Project = app.models.Project;
+    const Team = app.models.Team;
     const User = app.models.User;
 
     return {
@@ -31,7 +33,6 @@ module.exports = (app) => {
             task.creator = req.userId;
             task.assigned = req.userId;
             task.project = req.params.id;
-            console.log(req.params.id);
             return task;
         }
 
@@ -60,12 +61,36 @@ module.exports = (app) => {
     }
 
     function update(req, res, next) {
+
+        // Task.findById(req.body.id)
+        //     .then(app.utils.ensureOne)
+        //     .catch(app.utils.reject(404, 'task.not.found'))
+        //     .then(getTeam)
+        //     .then(app.utils.ensureOne)
+        //     .catch(app.utils.reject(404, 'project.not.found'))
+
         Task.findByIdAndUpdate(req.body.id, req.body)
             .then(app.utils.ensureOne)
             .catch(app.utils.reject(404, 'task.not.found'))
             .then(app.utils.empty)
             .then(res.commit)
             .catch(res.error);
+
+        // function getProject(task){
+        //
+        //   return Project.findById(task.project)
+        //     .populate('team')
+        //     .them(userAllowed)
+        //     function userAllowed(user){
+        //       User.findById(req.userId)
+        //       .then(userAllowed)
+        //     }
+        // }
+
+
+
+        }
+
     }
 
     function remove(req, res, next) {

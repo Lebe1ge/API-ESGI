@@ -1,83 +1,69 @@
 module.exports = (app) => {
     const User = app.models.User;
     const Team = app.models.Team;
-    const Task = 
+    const Task = app.models.Task;
 
     return (req, res, next) => {
-        let originalAssignedUser = null;
-        let newAssignedUser = null;
-        let task = null;
+
+        let userLeave = null;
+        let teamLeave = null;
 
         //Check if user from team
 
-        return findAssigned()
+        return teamToLeave()
             .then(app.utils.ensureOne)
-            .catch(app.utils.reject(404, 'assigned.not.found'))
-            .then(findTask)
-            .then(app.utils.ensureOne)
-            .catch(app.utils.reject(404, 'task.not.found'))
-            .then(getOriginalAssigned)
-            .then(updateTask)
-            .then(updateAssigned)
-            .then(app.utils.empty)
+            .catch(app.utils.reject(404, 'team.not.found'))
+            .then(userToLeave)
+            .catch(app.utils.reject(404, 'user.not.found'))
+            .then(teamDeleteUser)
+            .catch(app.utils.reject(404, 'user.not.in.this.team'))
+            .then(userDeleteTeam)
+            .catch(app.utils.reject(404, 'user.not.in.this.team'))
             .then(res.commit)
             .catch(res.error);
 
-        function findAssigned(){
-            console.log(req.body);
-            return User.findById(req.body.assignedId)
-                .then(set);
 
-            function set(data){
-                return newAssignedUser = data;
-            }
+
+        function teamToLeave(){
+            return Team.findById(req.params.id)
+              .then(set)
+
+              function set(data){
+                  return teamLeave = data;
+              }
         }
 
-        function findTask(){
-            console.log(req.params);
-            return Task.findById(req.params.task_id)
-                .then(set);
+        function userToLeave(){
+            return User.findById(req.userId)
+              .then(set)
 
-            function set(data){
-                return task = data
-            }
+              function set(data){
+                  return userLeave = data;
+              }
         }
 
-        function getOriginalAssigned() {
-            return User.findById(task.assigned)
-                .then(set);
-
-            function set(data) {
-                originalAssignedUser = data
-            }
+        function teamDeleteUser(){
+            teamLeave.users.forEach((item) => {
+                if(item == userLeave._id){
+                    return Team.findByIdAndUpdate(teamLeave._id, {
+                        $pull: {
+                            'users': userLeave._id
+                        }
+                    })
+                }
+            });
         }
 
-        function updateTask() {
-            task.assigned = req.body.assignedId;
-            return task.save();
-        }
-
-        function updateAssigned(){
-
-            return updateOriginal()
-                .then(updateNew);
-
-            function updateOriginal() {
-                return User.findByIdAndUpdate(originalAssignedUser._id, {
-                    $pull: {
-                        'tasks': task._id
-                    }
-                })
-            }
-
-            function updateNew() {
-                newAssignedUser.tasks.push(task._id.toString());
-                return newAssignedUser.save();
-            }
-        }
-
-        function returnTask(){
-            return task;
+        function UserDeleteTeam(){
+            userLeave.teams.forEach((item) => {
+                if(item == teamLeave._id){
+                    return Users.findByIdAndUpdate(userLeave._id, {
+                        $pull: {
+                            'teams': teamLeave._id
+                        }
+                    })
+                }
+            });
         }
     };
 };
