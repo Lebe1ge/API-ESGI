@@ -16,7 +16,7 @@ module.exports = (app) => {
         .then(findAssociatedUser)
         .then(app.utils.ensureOne)
         .catch(app.utils.reject(403, 'invalid.user'))
-        .then(setUserId)
+        .then(setUser)
         .then(next)
         .catch(unauthorized);
 
@@ -36,8 +36,18 @@ module.exports = (app) => {
       return User.findById(decryptedToken.data.userId)
     }
 
-    function setUserId(user) {
-        req.userId = user._id
+    function setUser(user) {
+        req.user = {
+            id: user._id.toString()
+        };
+
+        return Role.findById(user.role)
+            .then(setAccessLevel);
+
+        function setAccessLevel(role){
+            req.user.accessLevel = role.level;
+        }
+
     }
 
     function unauthorized(){

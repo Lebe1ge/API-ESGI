@@ -24,7 +24,6 @@
       }
     ],
     "actions": {
-      "member.delete": 2,
       "project.assign": 2,
       "project.remove": 2,
       "project.update": 2,
@@ -33,7 +32,8 @@
       "task.list": 3,
       "task.update": 2,
       "task.assign": 2,
-      "team.adduser": 1
+      "team.adduser": 1,
+      "team.removeuser": 2
     }
   }
 }

@@ -10,7 +10,10 @@ module.exports = (app) => {
     app.actions.projects.create
   )
 
-  router.get('/', app.actions.projects.list)
+  router.get('/',
+      app.middlewares.ensureRights({"typeId": 'projet', "action": 'project.get'}),
+      app.actions.projects.list
+  );
 
   router.get('/:id', app.actions.projects.show)
 
