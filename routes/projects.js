@@ -4,7 +4,7 @@ module.exports = (app) => {
   let router = new Router()
 
   router.post('/',
-    app.middlewares.ensureAuthenticated, 
+    app.middlewares.ensureAuthenticated,
     app.middlewares.bodyParser.json(),
     app.middlewares.ensureFields('name'),
     app.actions.projects.create
@@ -12,7 +12,9 @@ module.exports = (app) => {
 
   router.get('/', app.actions.projects.list)
 
-  router.get('/:id', app.actions.projects.show)
+  router.get('/:id',
+    app.middlewares.ensureAuthenticated,
+    app.actions.projects.show)
 
   router.put('/',
     app.middlewares.bodyParser.json(),

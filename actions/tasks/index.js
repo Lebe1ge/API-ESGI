@@ -16,7 +16,7 @@ module.exports = (app) => {
     function create(req, res, next) {
         let user = null;
 
-        return User.findById(req.body.userId)
+        return User.findById(req.userId)
             .then(app.utils.ensureOne)
             .catch(app.utils.reject(403, 'invalid.user'))
             .then(createTask)
@@ -31,10 +31,10 @@ module.exports = (app) => {
         }
 
         function setProjectCreatorAndAssign(task) {
-            task.creator = req.body.userId;
-            task.assigned = req.body.userId;
+            task.creator = req.userId;
+            task.assigned = req.userId;
             task.project = req.params.id;
-            console.log(req.params.id);
+            // console.log(req.params.id);
             return task;
         }
 
@@ -87,4 +87,3 @@ module.exports = (app) => {
             .catch(res.error);
     }
 };
-
