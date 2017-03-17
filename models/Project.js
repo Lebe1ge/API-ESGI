@@ -22,7 +22,6 @@ module.exports = (app) => {
        type: app.mongoose.Schema.Types.ObjectId,
        ref: 'Team'
      }
-
   });
 
   ProjectSchema.plugin(timestamp);

@@ -1,7 +1,7 @@
 const Router = require('express').Router
 
 module.exports = (app) => {
-  let router = new Router()
+  let router = new Router();
 
   router.post('/',
     app.middlewares.ensureAuthenticated,
@@ -11,12 +11,12 @@ module.exports = (app) => {
   )
 
   router.get('/',
-      app.middlewares.ensureRights({"typeId": 'projet', "action": 'project.get'}),
       app.actions.projects.list
   );
 
   router.get('/:id',
     app.middlewares.ensureAuthenticated,
+
     app.actions.projects.show)
 
   router.put('/',

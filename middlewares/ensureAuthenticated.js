@@ -37,16 +37,8 @@ module.exports = (app) => {
     }
 
     function setUser(user) {
-        req.user = {
-            id: user._id.toString()
-        };
 
-        return Role.findById(user.role)
-            .then(setAccessLevel);
-
-        function setAccessLevel(role){
-            req.user.accessLevel = role.level;
-        }
+        req.userId = user._id;
 
     }
 

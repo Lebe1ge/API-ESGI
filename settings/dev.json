@@ -11,18 +11,19 @@
   "acl": {
     "roles": [
       {
-      "name": "Owner",
-      "level": 1
-      },
-      {
-        "name": "Admin",
-        "level": 2
-      },
-      {
-        "name": "Member",
-        "level": 3
-      }
-    ],
+        "Owner": {
+          "name": "Owner",
+          "level": 1
+        },
+        "Admin": {
+          "name": "Admin",
+          "level": 2
+        },
+        "Member": {
+          "name": "Member",
+          "level": 3
+        }
+      }],
     "actions": {
       "project.assign": 2,
       "project.remove": 2,

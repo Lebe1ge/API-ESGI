@@ -9,7 +9,7 @@ module.exports = (app) => {
     show,
     update,
     remove
-  }
+  };
 
   function create(req, res, next){
     let user = null;

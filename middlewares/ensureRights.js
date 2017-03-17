@@ -8,10 +8,9 @@ module.exports = (app) => {
 
         return (req, res, next) => {
 
-
             if(action.typeId == "project") {
 
-                Project.findById()
+                Project.findById(req.params.id)
                     .then(app.utils.ensureOne)
                     .catch(app.utils.reject(404, 'project.not.found'))
                     .then(getProjectTeam)
@@ -24,7 +23,7 @@ module.exports = (app) => {
 
             }else{
 
-                Team.findById(req.body.typeId)
+                Team.findById(req.params.id)
                     .then(app.utils.ensureOne)
                     .catch(app.utils.reject(404, 'team.not.found'))
                     .then(getUserRole)
@@ -38,7 +37,7 @@ module.exports = (app) => {
 
         function getProjectTeam(project) {
 
-
+            console.log(project);
 
         }
 
@@ -53,7 +52,7 @@ module.exports = (app) => {
             const restrictions = app.settings.acl.actions;
 
             const requiredAccessLevel = restrictions[action.action];
-            let userAccessLevel = roles.name[userRole];
+            let userAccessLevel = roles[userRole].level;
 
             if (userAccessLevel > requiredAccessLevel) {
                 return res.status(401).send('not.enough.rights');
