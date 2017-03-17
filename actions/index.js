@@ -3,6 +3,7 @@ module.exports = (app) => {
     users: require('./users')(app),
     auth: require('./auth')(app),
     projects: require('./projects')(app),
-    tasks: require('./tasks')(app)
+    tasks: require('./tasks')(app),
+    teams: require('./teams')(app)
   }
 };
