@@ -23,12 +23,12 @@ Grello a pour but de devenir une plateforme de gestion de taches réservée aux 
 
 ### 2 - Regles fonctionelles
 - Un projet ne peut contenir qu'une seul équipe. :ok_hand:
-- Une équipe ne peut être que sur un seul projet.
-- Un utilisateur peut-être membre de plusieurs équipes.
-- Une équipe doit obligatoirement être associée à un projet.
+- Une équipe ne peut être que sur un seul projet. :ok_hand:
+- Un utilisateur peut-être membre de plusieurs équipes. :ok_hand:
+- Une équipe doit obligatoirement être associée à un projet. :ok_hand:
 - Une équipe ne peut-être créée que par le créateur du projet.
 - Le créateur d'une équipe rejoins automatiquement celle-ci lors de sa création avec le role "Owner".
-- Une tache doit obligatoirement être associée à un projet.
+- Une tache doit obligatoirement être associée à un projet. :ok_hand:
 - Une tache ne peut être créée que par le créateur du projet ou un membre de l'équipe associée au projet.
 - L'attribution/modification d'un rôle pour un membre d'une équipe ne peut se faire que par le créateur de cette équipe.
 - Les roles de membres d'une équipe sont : "Owner", "Admin", "Member" :ok_hand:
