@@ -5,7 +5,35 @@
   },
   "db": {
     "mongo": {
-      "url": "mongodb://localhost:27017/todolist"
+      "url": "mongodb://localhost:27017/grello"
+    }
+  },
+  "acl": {
+    "roles": [
+      {
+      "name": "Owner",
+      "level": 1
+      },
+      {
+        "name": "Admin",
+        "level": 2
+      },
+      {
+        "name": "Member",
+        "level": 3
+      }
+    ],
+    "actions": {
+      "member.delete": 2,
+      "project.assign": 2,
+      "project.remove": 2,
+      "project.update": 2,
+      "role.update": 1,
+      "task.create": 3,
+      "task.list": 3,
+      "task.update": 2,
+      "task.assign": 2,
+      "team.adduser": 1
     }
   }
 }
