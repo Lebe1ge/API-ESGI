@@ -14,7 +14,13 @@ module.exports = (app) => {
     password: {
       type: String,
       required: true
-    }
+    },
+    teams: [
+      {
+        type: app.mongoose.Schema.Types.ObjectId,
+        ref:'Team'
+      }
+    ]
   });
 
   UserSchema.plugin(timestamp);
