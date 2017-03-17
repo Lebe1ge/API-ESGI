@@ -25,6 +25,10 @@ module.exports = (app) => {
 
   router.delete('/:id', app.actions.teams.remove)
 
+    router.put('/:id/assign',
+        app.middlewares.bodyParser.json(),
+        app.actions.teams.assign);
+
   return router
 
 };
