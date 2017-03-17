@@ -24,7 +24,7 @@ module.exports = (app) => {
         .catch(res.error);
 
     function createProject(data) {
-        project = data;
+        user = data;
         return new Project(req.body);
     }
 
