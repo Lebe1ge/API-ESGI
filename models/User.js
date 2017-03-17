@@ -20,7 +20,13 @@ module.exports = (app) => {
          type: app.mongoose.Schema.Types.ObjectId,
          ref:'Project'
        }
-     ]
+     ],
+    teams: [
+      {
+        type: app.mongoose.Schema.Types.ObjectId,
+        ref:'Team'
+      }
+    ]
   });
 
   UserSchema.plugin(timestamp);
