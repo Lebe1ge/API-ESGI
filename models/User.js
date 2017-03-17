@@ -14,13 +14,7 @@ module.exports = (app) => {
     password: {
       type: String,
       required: true
-    },
-    // todos: [
-    //   {
-    //     type: app.mongoose.Schema.Types.ObjectId,
-    //     ref:'Todo'
-    //   }
-    // ]
+    }
   });
 
   UserSchema.plugin(timestamp);
