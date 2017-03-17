@@ -36,11 +36,12 @@ module.exports = (app) => {
     function persist(project) {
         return project.save()
             .then(addToUser)
-            .then(returnProject);
+            .then(returnProject)
+            .catch(res.error);
 
         function addToUser(project) {
             user.projects.push(project._id);
-            user.save()
+            return user.save()
         }
 
         function returnProject() {
