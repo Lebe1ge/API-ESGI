@@ -7,8 +7,8 @@ module.exports = (app) => {
         list,
         show,
         update,
-        remove
-        //assign: require('./assign')(app)
+        remove,
+        assign: require('./assign')(app)
     };
 
     //TODO : modifier body.userId

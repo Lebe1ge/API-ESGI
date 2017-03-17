@@ -16,13 +16,13 @@ module.exports = (app) => {
          type: app.mongoose.Schema.Types.ObjectId,
          ref:'Task'
        }
-    ]
-    // team :
-    //  {
-    //    type: app.mongoose.Schema.Types.ObjectId,
-    //    ref: 'Team'
-    //  }
-    //
+    ],
+    team :
+     {
+       type: app.mongoose.Schema.Types.ObjectId,
+       ref: 'Team'
+     }
+
   });
 
   ProjectSchema.plugin(timestamp);

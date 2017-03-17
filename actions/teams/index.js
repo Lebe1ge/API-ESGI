@@ -16,7 +16,7 @@ module.exports = (app) => {
       name: req.body.name
     })
         .then(app.utils.ensureEmpty)
-        .catch(app.utils.reject(403, 'Team.already.exists'))
+        .catch(app.utils.reject(403, 'Team.name.already.exists'))
         .then(ensureProjectExist)
         .then(createTeam)
         .then(res.commit)
@@ -25,7 +25,18 @@ module.exports = (app) => {
         function ensureProjectExist(){
           return Project.findById(req.body.projectId)
                  .then(app.utils.ensureOne)
-                 .catch(app.utils.reject(403, 'Project.not.found'))
+                 .then(ensureProjectEmpty)
+                 .catch(app.utils.reject(403, 'Project.not.foundenculeee'))
+
+          function ensureProjectEmpty(project){
+            if (!project.team) {
+              console.log("je passe laaa ");
+              return project;
+            }
+            console.log("je passe la ");
+
+            return app.utils.reject(403, 'Project.have.already.team')
+          }
         }
 
         function createTeam(){

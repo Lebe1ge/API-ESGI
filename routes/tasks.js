@@ -6,7 +6,7 @@ module.exports = (app) => {
     router.post('/:id/tasks',
         app.middlewares.ensureAuthenticated,
         app.middlewares.bodyParser.json(),
-        app.middlewares.ensureFields('title'),
+        app.middlewares.ensureFields(['title', 'project']),
         app.actions.tasks.create
     );
 
@@ -27,8 +27,9 @@ module.exports = (app) => {
         app.middlewares.ensureAuthenticated,
         app.actions.tasks.remove);
 
-    /*router.put('/:id/assign/:assignedId',
-        app.actions.tasks.assign);*/
+    router.put('/:id/tasks/:task_id/assign',
+        app.middlewares.bodyParser.json(),
+        app.actions.tasks.assign);
 
     return router;
 };
