@@ -17,11 +17,15 @@ module.exports = (app) => {
     app.actions.projects.show)
 
   router.put('/',
+    app.middlewares.ensureAuthenticated,
     app.middlewares.bodyParser.json(),
     app.actions.projects.update
   )
 
-  router.delete('/:id', app.actions.projects.remove)
+  router.delete('/:id',
+    app.middlewares.ensureAuthenticated,
+    app.actions.projects.remove
+  )
 
   return router;
 }
