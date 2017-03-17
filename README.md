@@ -14,7 +14,7 @@ Grello a pour but de devenir une plateforme de gestion de taches réservée aux 
      - Permettre de s'authentifier
 
 - Les services nécessitant d'être authentifié seront :
-    - Permettre de CRUD un projet.
+    - Permettre de CRUD un projet. :ok_hand:
     - Permettre de CRUD une équipe.
     - Permettre de CRUD les membres d'une équipe.
     - Permettre de CRUD une tache.
