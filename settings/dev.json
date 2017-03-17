@@ -9,7 +9,7 @@
     }
   },
   "acl": {
-    "roles": [
+    "roles":
       {
         "Owner": {
           "name": "Owner",
@@ -23,7 +23,7 @@
           "name": "Member",
           "level": 3
         }
-      }],
+      },
     "actions": {
       "project.assign": 2,
       "project.remove": 2,
