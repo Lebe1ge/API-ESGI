@@ -23,7 +23,7 @@ module.exports = (app) => {
         .catch(res.error)
 
         function ensureProjectExist(){
-          return Project.findbyId(req.body.projectId)
+          return Project.findById(req.body.projectId)
                  .then(app.utils.ensureOne)
                  .catch(app.utils.reject(403, 'Project.not.found'))
         }
@@ -31,7 +31,7 @@ module.exports = (app) => {
         function createTeam(){
           let team = new Team(req.body);
 
-          team.users.push({id:userId, role:'Owner'})
+          team.users.push({id:req.userId, role:'Owner'})
           return team.save();
         }
   }
@@ -68,10 +68,4 @@ module.exports = (app) => {
       .then(res.commit)
       .catch(res.error)
   }
-}
-
-
-
-
-
 }
