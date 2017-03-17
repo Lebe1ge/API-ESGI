@@ -4,20 +4,22 @@ module.exports = (app) => {
   const Schema = app.mongoose.Schema;
 
   const TeamSchema = new Schema({
-    users: [
-       {
+    users: [{
+      id :{
          type: app.mongoose.Schema.Types.ObjectId,
          ref: 'User'
-       }
-    ],
+      },
+      role : String
+    }],
+    name : {
+      type: String,
+      unique: true
+    },
     project: {
       type: app.mongoose.Schema.Types.ObjectId,
-      ref: 'User'
-    },
-    owner: {
-      type: app.mongoose.Schema.Types.ObjectId,
-      ref: 'User'
-    },
+      ref: 'Project',
+      require : true
+    }
   });
 
   TeamSchema.plugin(timestamp);
