@@ -9,7 +9,7 @@ module.exports = (app) => {
     show,
     update,
     remove,
-    leave: require('./leave')(app)
+    leave: require('./leave')(app),
     assign: require('./assign')(app)
   }
 
@@ -36,7 +36,7 @@ module.exports = (app) => {
             if (!project.team) {
               return project;
             }
-            
+
             return app.utils.reject(403, 'Project.have.already.team')
           }
         }
