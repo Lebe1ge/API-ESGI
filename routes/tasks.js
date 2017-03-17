@@ -22,8 +22,9 @@ module.exports = (app) => {
     router.delete('/:id/tasks',
         app.actions.tasks.remove);
 
-    /*router.put('/:id/assign/:assignedId',
-        app.actions.tasks.assign);*/
+    router.put('/:id/tasks/:task_id/assign',
+        app.middlewares.bodyParser.json(),
+        app.actions.tasks.assign);
 
     return router;
 };
