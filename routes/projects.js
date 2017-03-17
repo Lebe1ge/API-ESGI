@@ -12,7 +12,9 @@ module.exports = (app) => {
 
   router.get('/', app.actions.projects.list)
 
-  router.get('/:id', app.actions.projects.show)
+  router.get('/:id',
+    app.middlewares.ensureAuthenticated,
+    app.actions.projects.show)
 
   router.put('/',
     app.middlewares.bodyParser.json(),
