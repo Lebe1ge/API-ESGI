@@ -4,7 +4,7 @@ module.exports = (app) => {
   let router = new Router()
 
   router.post('/',
-    app.middlewares.ensureAuthenticated, 
+    app.middlewares.ensureAuthenticated,
     app.middlewares.bodyParser.json(),
     app.middlewares.ensureFields('name'),
     app.actions.projects.create

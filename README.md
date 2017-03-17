@@ -42,7 +42,7 @@ Grello a pour but de devenir une plateforme de gestion de taches réservée aux 
 
 ### 3 - Règles Techniques
 - L'ensemble des échanges sera fera via le `Content-Type: application/json`.
-- L'identification d'un utilisateur se fera par le biais d'un échange de Token de le header `Authorization`.
+- L'identification d'un utilisateur se fera par le biais d'un échange de Token de le header `Authorization`. :ok_hand:
 - Votre projet doit être fonctionnel "from scratch" ce qui signifie que lors de la soutenance, il peut-être demandé d'écraser l'ensemble de vos données, et de démarrer sur un repertoire vide où l'on clonera votre projet depuis un repository distant. Pensez à bien initialiser vos script de démarrage et à commit/push votre code sur un gestionnaire de versions.
 
 ### 4 - Notation
