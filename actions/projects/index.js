@@ -8,7 +8,8 @@ module.exports = (app) => {
     list,
     show,
     update,
-    remove
+    remove,
+      listTasks
   }
 
   function create(req, res, next){
@@ -80,4 +81,10 @@ module.exports = (app) => {
         .then(res.commit)
         .catch(res.error);
   }
+
+    function listTasks(req, res, next){
+        Project.findById(req.params.id)
+            .then(res.commit)
+            .catch(res.error);
+    }
 }
