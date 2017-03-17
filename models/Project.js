@@ -10,19 +10,19 @@ module.exports = (app) => {
     creator : {
       type: app.mongoose.Schema.Types.ObjectId,
       ref: 'User'
-    }
-    // tasks: [
-    //   {
-    //     type: app.mongoose.Schema.Types.ObjectId,
-    //     ref:'Task'
-    //   }
-    // ],
-    // team :
-    //  {
-    //    type: app.mongoose.Schema.Types.ObjectId,
-    //    ref: 'Team'
-    //  }
-    //
+    },
+    tasks: [
+       {
+         type: app.mongoose.Schema.Types.ObjectId,
+         ref:'Task'
+       }
+    ],
+    team :
+     {
+       type: app.mongoose.Schema.Types.ObjectId,
+       ref: 'Team'
+     }
+
   });
 
   ProjectSchema.plugin(timestamp);

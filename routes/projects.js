@@ -14,8 +14,7 @@ module.exports = (app) => {
 
   router.get('/:id',
     app.middlewares.ensureAuthenticated,
-    app.actions.projects.show
-  )
+    app.actions.projects.show)
 
   router.put('/',
     app.middlewares.ensureAuthenticated,
