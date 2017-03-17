@@ -15,12 +15,18 @@ module.exports = (app) => {
       type: String,
       required: true
     },
-    // todos: [
-    //   {
-    //     type: app.mongoose.Schema.Types.ObjectId,
-    //     ref:'Todo'
-    //   }
-    // ]
+    projects: [
+       {
+         type: app.mongoose.Schema.Types.ObjectId,
+         ref:'Project'
+       }
+     ],
+    teams: [
+      {
+        type: app.mongoose.Schema.Types.ObjectId,
+        ref:'Team'
+      }
+    ]
   });
 
   UserSchema.plugin(timestamp);
