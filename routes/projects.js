@@ -16,7 +16,7 @@ module.exports = (app) => {
 
   router.get('/:id',
     app.middlewares.ensureAuthenticated,
-
+    app.middlewares.ensureRights({"typeId": "project", "action": "project.assign"}),
     app.actions.projects.show)
 
   router.put('/',
